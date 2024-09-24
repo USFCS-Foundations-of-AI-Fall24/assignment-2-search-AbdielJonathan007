@@ -7,7 +7,6 @@ def breadth_first_search(startState, action_list, goal_test, use_closed_list=Tru
     closed_list = {}
     counter = 0
 
-
     search_queue.append((startState,""))
     if use_closed_list :
         closed_list[startState] = True

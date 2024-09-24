@@ -98,24 +98,13 @@ def a_star(start_state, heuristic_fn, goal_test, use_closed_list=True) :
     # that's not what is asked
     return None
 
-            # generate successor
-            # doubt on step 3
-
-    ## you do the rest.
-    # if its not the goal state, we'll add it to the visited list
-    # then we compute the heuristic measure from visited node to other nodes
-
-## default heuristic - we can use this to implement uniform cost search
-#TODO
-
 def is_complete(state):
     return state.is_goal()
+## default heuristic - we can use this to implement uniform cost search
 def h1(state) :
     return 0
 
-
 ## you do this - return the straight-line distance between the state and (1,1)
-
 def sld(state) :
     loc = state.location.split(",")
     x1 = int(loc[0])
@@ -126,11 +115,8 @@ def sld(state) :
 
     return math.sqrt((x1 - goal_1) ** 2 + x2 - goal_2 ** 2)
 
-## you implement this. Open the file filename, read in each line,
-## construct a Graph object and assign it to self.mars_graph().
 def read_mars_graph(filename):
     graph = Graph()
-
     try:
         with open(filename, 'r') as file:
             lines = file.readlines()
@@ -177,21 +163,3 @@ def read_mars_graph(filename):
     except Exception as e:
         print(f"Error processing file {file}: {e}")
     return graph
-
-
-def main():
-    map_start = read_mars_graph("MarsMap")
-
-    start_state = map_state(location="8,8", mars_graph=map_start)
-
-    #A* with sld
-    a_star(start_state, sld, is_complete, use_closed_list=True)
-    print("""
-    
-    """)
-    # A* with h1
-    a_star(start_state,h1, is_complete, use_closed_list=True)
-
-if __name__ == "__main__":
-    main()
-

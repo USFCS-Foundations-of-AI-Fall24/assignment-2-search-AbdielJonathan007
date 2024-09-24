@@ -1,5 +1,5 @@
 from ortools.sat.python import cp_model
-
+#Used online sources as a reference here along with the professor provided code
 # Instantiate model and solver
 model = cp_model.CpModel()
 solver = cp_model.CpSolver()

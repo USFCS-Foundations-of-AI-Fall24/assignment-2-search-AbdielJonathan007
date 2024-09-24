@@ -59,7 +59,6 @@ class RoverState:
         succ = [item for item in succ if not item[0] == self]
         return succ
 
-
 ## our actions will be functions that return a new state.
 
 def move_to_sample(state):
@@ -67,7 +66,6 @@ def move_to_sample(state):
     r2.loc = "sample"
     r2.prev = state
     return r2
-
 
 def move_to_station(state):
     r2 = deepcopy(state)
@@ -82,9 +80,7 @@ def move_to_battery(state):
     r2.prev = state
     return r2
 
-
 # add tool functions here
-
 
 def pick_up_sample(state):
     r2 = deepcopy(state)
@@ -94,7 +90,6 @@ def pick_up_sample(state):
     r2.prev = state
     return r2
 
-
 def drop_sample(state):
     r2 = deepcopy(state)
     if state.sample_extracted and state.loc == "station":
@@ -102,7 +97,6 @@ def drop_sample(state):
         r2.sample_at_station = True
     r2.prev = state
     return r2
-
 
 def charge(state):
     r2 = deepcopy(state)
@@ -124,7 +118,6 @@ def pick_up_tool(state):
     r2.prev = state
     return r2
 
-
 def drop_tool(state):
     r2 = deepcopy(state)
     if state.loc == "station":
@@ -134,7 +127,6 @@ def drop_tool(state):
 
 action_list = [charge, drop_sample, pick_up_sample,
                move_to_sample, move_to_battery, move_to_station,use_tool,pick_up_tool,drop_tool ]
-
 
 def battery_goal(state):
     return state.loc == "battery"
@@ -147,18 +139,10 @@ def goal_function(state):
     return state.loc == 'battery' and state.charged
 
 
-# class example
-# def holding_tool(state):
-#     return self.holding_tool
-
 def mission_complete(state):
     return (state.loc == 'battery' and
             state.charged and
-            state.sample_at_station)  # check if this is necessary
-
-
-# Start of holding_tool instance
-
+            state.sample_at_station)
 
 # problem decomposition functions
 def move_to_sample(state):
@@ -170,22 +154,5 @@ def remove_sample(state):
 def return_to_charger(state):
     return state.loc == "battery" and state.charged
 
-if __name__ == "__main__":
-    state = RoverState()
-    result = breadth_first_search(state, action_list, mission_complete)
 
-    state = RoverState()
-    result1 = depth_first_search(state, action_list, mission_complete)
-
-    # Sub-problem 1: Move to sample
-    print("Sub-problem 1: Move to Sample")
-    result_move_to_sample = breadth_first_search(state, action_list, move_to_sample)
-
-    # Sub-problem 2: Remove sample (after moving to sample)
-    print("Sub-problem 2: Remove Sample")
-    result_remove_sample = breadth_first_search(result_move_to_sample[0], action_list, remove_sample)
-
-    # Sub-problem 3: Return to charger
-    print("Sub-problem 3: Return to Charger")
-    result_return_to_charger = breadth_first_search(result_remove_sample[0], action_list, return_to_charger)
 
