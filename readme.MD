@@ -74,7 +74,7 @@ Pick_up_tool should return a new state with the holding_tool
 variable set to True, drop_tool should return a new state with the holding_tool variable set to false, and use_tool should 
 return a new state with the sample_extracted variable set to True.
 
-Run each of the four algorithms (breadth_first_search, depth_first_search, depth_limited_search, iterative_deepening_search) 
+Run each of the three algorithms (breadth_first_search, depth_first_search, depth_limited_search) 
 on this new problem and count the number of states generated. 
 
 6. **(10 points)** _Sept 15_ An early insight in solving search-based problems was the idea of *problem decomposition*. If a 

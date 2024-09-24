@@ -2,9 +2,6 @@ from unittest import TestCase
 from mars_planner import *
 
 
-class TestRoverState(TestCase):
-    pass
-
 
 class Test(TestCase):
     def test_move_to_sample(self):
